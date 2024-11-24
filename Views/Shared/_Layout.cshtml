@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - ThreeAmigos</title>
+    <link rel="stylesheet" href="~/css/main.css">
+    <script defer src="~/js/main.js"></script>
+    <script defer src="~/js/product.js"></script>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="/">Three Amigos</a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/Products">Products</a></li>
+                    <li><a href="/Contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user-section">
+                <div class="cart">
+                    <button id="cart-button" onclick="openCart()">
+                        <span class="cart-icon">🛒</span>
+                        <span id="cart-count">0</span>
+                    </button>
+                </div>
+                <div class="wallet">
+                    <span id="wallet-balance">£100.00</span>
+                </div>
+                <div class="user-info">
+                    <img id="user-avatar" src="https://img.freepik.com/free-psd/3d-illustration-with-online-avatar_23-2151303097.jpg" alt="User Avatar" alt="User Avatar" />
+                    <span id="user-name">Chinemelum</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ThreeAmigos. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

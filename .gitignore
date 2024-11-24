@@ -1,0 +1,126 @@
+# Build Folders (you can keep bin if you'd like to checkin assemblies)
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Dd]ebug/
+[Rr]elease/
+
+# Visual Studio specific files
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.sln.ide.shared
+*.sln.ide.shared.*
+*.vspscc
+*.vspcc
+*.vssscc
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Common Lock Files
+*.lock
+
+# JetBrains Rider
+.idea/
+.idea_modules/
+
+# Resharper
+*.ReSharper
+*.ReSharper.user
+*.DotSettings.user
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Google Drive
+*.tmp.drivedownload
+
+# Linux Files
+.Trash-*
+.nfs*
+
+# Node Modules
+node_modules/
+
+# Packages folder (used in some versions of NuGet)
+packages/
+*.nupkg
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Auto-generated files for ASP.NET
+*.generated.cs
+*.designer.cs
+*.g.cs
+*.g.i.cs
+*.csproj.user
+*.vcproj.user
+*.webtestresults
+Generated_Code/
+
+# Web Publish
+*.Publish.xml
+*.pubxml
+*.pubxml.user
+
+# Nuget / MSBuild artifacts
+*.cache
+*.bak
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# IIS Express specific files
+.config/
+
+# User-specific files
+*.rsuser
+*.userprefs
+
+# Azure Web App publish settings
+*.PublishSettings
+
+# File based project references
+*.references
+
+# Python Tools for Visual Studio (PTVS)
+__pycache__/
+*.pyc
+
+# PowerShell
+*.ps1xml
+*.psc1
+*.psm1
+*.psd1
+*.pssc
+
+# NCrunch
+.ncrunchproject
+.ncrunchsolution
+
+# Coverity
+.coverity/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt

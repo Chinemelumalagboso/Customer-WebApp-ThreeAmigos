@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Product List - ThreeAmigos";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="~/css/main.css">
+
+    <!-- Link to JS -->
+    <script defer src="~/js/product.js"></script>
+</head>
+<body>
+  
+    
+    <section class="product-section">
+        <h1>Place order from our Products</h1>
+        <p class="subtitle">Pick from our variety of ptoducts and get it delivered to Your door step</p>
+
+        <div class="categories"></div>
+
+        <div class="products" id="products">
+        </div>
+        <div id="cart-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeCart()">&times;</span>
+                <h2>Your Cart</h2>
+                <div id="cart-items">
+                </div>
+                <div class="cart-footer">
+                    <span class="wallet-balance">Wallet Balance: £<span id="wallet-balance-modal">100.00</span></span>
+                    <button class="checkout-button" onclick="checkout()">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+</html>
