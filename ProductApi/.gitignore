@@ -4,6 +4,7 @@
 [Ll]og/
 [Dd]ebug/
 [Rr]elease/
+published_app/
 
 # Visual Studio specific files
 .vs/
