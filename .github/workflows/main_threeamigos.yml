@@ -8,7 +8,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: threeamigos
-  AZURE_WEBAPP_PACKAGE_PATH: './ProductApi/published_app'
+  AZURE_WEBAPP_PACKAGE_PATH: ./ProductApi/published_app
   DOTNET_VERSION: '9.0.x'
 
 jobs:
@@ -40,6 +40,9 @@ jobs:
       - name: Publish application
         run: dotnet publish ProductApi/ThreeAmigos.csproj -c Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
+      - name: List published app files
+        run: ls -la ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v3
         with:
@@ -59,10 +62,13 @@ jobs:
         with:
           name: published_app
 
+      - name: List downloaded artifact files
+        run: ls -la published_app
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          package: published_app
