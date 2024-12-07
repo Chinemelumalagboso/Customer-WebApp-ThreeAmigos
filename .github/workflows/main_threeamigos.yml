@@ -8,7 +8,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: threeamigos
-  AZURE_WEBAPP_PACKAGE_PATH: ./ProductApi/published_app
+  AZURE_WEBAPP_PACKAGE_PATH: './ProductApi/published_app'
   DOTNET_VERSION: '9.0.x'
 
 jobs:
@@ -24,6 +24,10 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
+      - name: Clean build artifacts
+        run: |
+          find . -type d \( -name "bin" -o -name "obj" \) -exec rm -rf {} +
+
       - name: Restore dependencies
         run: dotnet restore ThreeAmigos-Customer-WebApp.sln
 
@@ -31,7 +35,7 @@ jobs:
         run: dotnet build ThreeAmigos-Customer-WebApp.sln --configuration Release --no-restore
 
       - name: Run unit tests
-        run: dotnet test ProductApi/UnitTests/Test.csproj --configuration Debug --verbosity normal
+        run: dotnet test ProductApi/UnitTests/Test.csproj --configuration Release --verbosity normal
 
       - name: Publish application
         run: dotnet publish ProductApi/ThreeAmigos.csproj -c Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
@@ -55,7 +59,7 @@ jobs:
         with:
           name: published_app
 
-      - name: Deploy to Azure App Service
+      - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
