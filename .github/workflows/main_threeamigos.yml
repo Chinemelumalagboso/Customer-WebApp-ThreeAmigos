@@ -31,7 +31,11 @@ jobs:
       - name: Publish Project
         run: dotnet publish ProjectName.csproj -c Release -o ${{ github.workspace }}/published_app
 
-      # Step 5: Upload the published artifacts for deployment
+      # Step 5: Debugging - List published files
+      - name: List Published Files
+        run: dir ${{ github.workspace }}/published_app
+
+      # Step 6: Upload the published artifacts for deployment
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
@@ -46,13 +50,13 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      # Step 6: Download the published artifacts
+      # Step 7: Download the published artifacts
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: .net-app
 
-      # Step 7: Deploy to Azure Web App
+      # Step 8: Deploy to Azure Web App
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -60,4 +64,4 @@ jobs:
           app-name: 'threeamigos'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BA3F54DE7EDB48F9A4AB1AFE436EBBE5 }}
-          package: ${{ github.workspace }}/published_app
+          package: D:\a\Customer-WebApp-ThreeAmigos\published_app
