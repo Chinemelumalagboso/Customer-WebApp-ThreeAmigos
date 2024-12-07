@@ -1,5 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
+# GitHub Actions Workflow: Build and deploy ASP.Net Core app to Azure Web App - ThreeAmigos
 
 name: Build and deploy ASP.Net Core app to Azure Web App - threeamigos
 
@@ -14,25 +13,30 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      # Step 1: Checkout the repository
       - uses: actions/checkout@v4
 
+      # Step 2: Set up .NET Core
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '9.x'
           include-prerelease: true
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      # Step 3: Build using the solution file explicitly
+      - name: Build Solution
+        run: dotnet build ThreeAmigos-Customer-WebApp.sln --configuration Release
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      # Step 4: Publish the application
+      - name: Publish Project
+        run: dotnet publish ThreeAmigos-Customer-WebApp.sln -c Release -o ${{ runner.workspace }}/published_app
 
+      # Step 5: Upload the published artifacts for deployment
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{ runner.workspace }}/published_app
 
   deploy:
     runs-on: windows-latest
@@ -42,11 +46,13 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+      # Step 6: Download the published artifacts
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: .net-app
 
+      # Step 7: Deploy to Azure Web App
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -54,4 +60,4 @@ jobs:
           app-name: 'threeamigos'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BA3F54DE7EDB48F9A4AB1AFE436EBBE5 }}
-          package: .
+          package: ${{ runner.workspace }}/published_app
