@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: threeamigos               
-  AZURE_WEBAPP_PACKAGE_PATH: './ProductApi/published_app'  
-  DOTNET_VERSION: '9.0.x'                       
+  AZURE_WEBAPP_NAME: threeamigos
+  AZURE_WEBAPP_PACKAGE_PATH: ./ProductApi/published_app
+  DOTNET_VERSION: '9.0.x'
 
 jobs:
   build_and_test:
@@ -24,14 +24,14 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Install dependencies
+      - name: Restore dependencies
         run: dotnet restore ThreeAmigos-Customer-WebApp.sln
 
       - name: Build application
         run: dotnet build ThreeAmigos-Customer-WebApp.sln --configuration Release --no-restore
 
       - name: Run unit tests
-        run: dotnet test ProductApi/UnitTests/Test.csproj --no-build --verbosity normal
+        run: dotnet test ProductApi/UnitTests/Test.csproj --configuration Debug --verbosity normal
 
       - name: Publish application
         run: dotnet publish ProductApi/ThreeAmigos.csproj -c Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
