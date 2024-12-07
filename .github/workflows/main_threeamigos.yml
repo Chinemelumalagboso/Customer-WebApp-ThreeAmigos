@@ -23,13 +23,13 @@ jobs:
           dotnet-version: '9.x'
           include-prerelease: true
 
-      # Step 3: Build using the solution file explicitly
-      - name: Build Solution
-        run: dotnet build ThreeAmigos-Customer-WebApp.sln --configuration Release
+      # Step 3: Build the project
+      - name: Build Project
+        run: dotnet build ProjectName.csproj --configuration Release
 
-      # Step 4: Publish the application
+      # Step 4: Publish the project
       - name: Publish Project
-        run: dotnet publish ThreeAmigos-Customer-WebApp.sln -c Release -o ${{ github.workspace }}/published_app
+        run: dotnet publish ProjectName.csproj -c Release -o ${{ github.workspace }}/published_app
 
       # Step 5: Upload the published artifacts for deployment
       - name: Upload artifact for deployment job
