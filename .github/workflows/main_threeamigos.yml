@@ -29,14 +29,14 @@ jobs:
 
       # Step 4: Publish the application
       - name: Publish Project
-        run: dotnet publish ThreeAmigos-Customer-WebApp.sln -c Release -o ${{ runner.workspace }}/published_app
+        run: dotnet publish ThreeAmigos-Customer-WebApp.sln -c Release -o ${{ github.workspace }}/published_app
 
       # Step 5: Upload the published artifacts for deployment
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ${{ runner.workspace }}/published_app
+          path: ${{ github.workspace }}/published_app
 
   deploy:
     runs-on: windows-latest
@@ -60,4 +60,4 @@ jobs:
           app-name: 'threeamigos'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BA3F54DE7EDB48F9A4AB1AFE436EBBE5 }}
-          package: ${{ runner.workspace }}/published_app
+          package: ${{ github.workspace }}/published_app
