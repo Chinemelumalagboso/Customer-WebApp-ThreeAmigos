@@ -30,9 +30,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="Models\**\*.cs" />
-    <Compile Include="Data\**\*.cs" />
-  </ItemGroup>
-
 </Project>
